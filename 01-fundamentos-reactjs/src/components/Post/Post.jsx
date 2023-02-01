@@ -52,7 +52,7 @@ export function Post({ author, content }){
                 <p> { content }</p>
             </div>
 
-            <form  className={ styles.commentForm }>
+            <form className={ styles.commentForm }>
                 <strong>Deixe seu feedback</strong>
                 <textarea onChange={setCommentText} value={commentText} placeholder="Deixe seu comentario"/>
 
