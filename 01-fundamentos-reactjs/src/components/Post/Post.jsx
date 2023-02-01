@@ -5,15 +5,33 @@ import styles from "./Post.module.css"
 
 export function Post({ author, content }){
 
+    const [commentText, setCommentText] = useState([""])
+
     const [comments, setComments] = useState([
-        1,
-        2
+        {
+            author: "Bruno Barbella",
+            image: "https://xesque.rocketseat.dev/users/avatar/profile-5dc907af-84c2-45c3-a96f-42afb8165112-1622418282074.jpg",
+            commentContent: "É isso ai"
+        },
+        {
+            author: "Leonardo Pilate Milos",
+            image: "https://pps.whatsapp.net/v/t61.24694-24/56770858_320622228646986_5172432146819710976_n.jpg?ccb=11-4&oh=01_AdTccp-20Xp3ktvGyw2fX3pM44cDShdJMDrsAty-JHwSCA&oe=63DD24D6",
+            commentContent: "Atacado"
+        }
     ])
 
     function handleCrateNewComment(event) {
         event.preventDefault()
 
-        setComments([...comments, comments.length + 1]);
+        console.log(commentText)
+
+        const newComment = {
+            author: "Bruno Barbella",
+            image: "https://xesque.rocketseat.dev/users/avatar/profile-5dc907af-84c2-45c3-a96f-42afb8165112-1622418282074.jpg",
+            commentContent: commentText
+        }
+        
+        setComments([...comments, newComment]);
     }
     
 
@@ -34,12 +52,12 @@ export function Post({ author, content }){
                 <p> { content }</p>
             </div>
 
-            <form onSubmit={handleCrateNewComment(event)} className={ styles.commentForm }>
+            <form  className={ styles.commentForm }>
                 <strong>Deixe seu feedback</strong>
-                <textarea  placeholder="Deixe seu comentario"/>
+                <textarea onChange={setCommentText} value={commentText} placeholder="Deixe seu comentario"/>
 
             <footer>
-                <button type="submit">Publicar</button>
+                <button onClick={handleCrateNewComment} type="submit">Publicar</button>
             </footer>
                 
             </form>
@@ -47,8 +65,11 @@ export function Post({ author, content }){
             <div className={ styles.commentList }>
                 {
                     comments.map(comment => {
-                        return <Comment author="Bruno Barbella" image="https://xesque.rocketseat.dev/users/avatar/profile-5dc907af-84c2-45c3-a96f-42afb8165112-1622418282074.jpg" commentContent="É isso ai"  />
-                    })
+                        return <Comment 
+                        author={comment.author} 
+                        image={comment.image} 
+                        commentContent={comment.commentContent}  
+                    />})
                 }
             </div>
         </article>
