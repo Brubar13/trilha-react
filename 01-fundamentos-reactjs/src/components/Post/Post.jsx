@@ -10,8 +10,9 @@ export function Post({ author, content }){
         2
     ])
 
-    function handleCrateNewComment() {
-          
+    function handleCrateNewComment(event) {
+        event.preventDefault()
+
         setComments([...comments, comments.length + 1]);
     }
     
@@ -33,7 +34,7 @@ export function Post({ author, content }){
                 <p> { content }</p>
             </div>
 
-            <form onSubmit={handleCrateNewComment()} className={ styles.commentForm }>
+            <form onSubmit={handleCrateNewComment(event)} className={ styles.commentForm }>
                 <strong>Deixe seu feedback</strong>
                 <textarea  placeholder="Deixe seu comentario"/>
 
